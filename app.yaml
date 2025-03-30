@@ -1,0 +1,15 @@
+runtime: python311
+#api_version: latest
+#threadsafe: true
+
+entrypoint: gunicorn -b :$PORT app:app
+
+handlers:
+- url: /static
+  static_dir: static
+- url: /.*
+  script: main.app
+
+#libraries:
+#  - name: ssl
+#version: 2.7.current

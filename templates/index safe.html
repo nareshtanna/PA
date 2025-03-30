@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form Submission</title>
+  <style>
+    body {background-color:lightcyan ;
+          font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+          text-align: center;}
+    form {font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+          font-size:larger}
+    textarea {background-color: black;
+              color:cyan;
+              font-family: Arial, Helvetica, sans-serif;
+              border: solid 1px;
+              border-color: black;}
+              .dropdown {
+      display: inline-block;
+      position: relative;
+    }
+      .dropdown {
+            display: inline-block;
+            position: relative;
+        }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 1;
+      width: 300px; /* Adjust the width as needed */
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .dropdown-content a {
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+      width: 100%; /* Ensure full width for columns */
+      box-sizing: border-box;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #f1f1f1;
+    }
+
+    .multi-column {
+      column-count: 3; /* Number of columns */
+      column-gap: 0; /* Gap between columns */
+  }
+  
+  </style>
+</head>
+<body>
+  <h1>Select to Stream!</h1>
+  <br><br>
+
+<form id="dataForm" method= "POST" action="/submit_data">
+<!--
+  <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required>
+    <br><br>
+-->
+    <label for="showtype">Movies or Series</label>
+    <select id="showtype" name="TypeofShow">
+    <option value=""></option>
+    <option value="movie">Movie</option>
+    <option value="series">Series</option>
+    </select>
+    <br>
+    <br>
+  <!--
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required><br><br>
+  -->
+    
+    <label for="Genre">Choose Genre:</label>
+
+<select name="Genre" id="Genre">
+  <option></option>
+  <option value="action">Action</option>
+  <option value="anime">Anime</option>
+  <option value="black stories">Black Stories</option>
+  <option value="british">British</option>
+  <option value="classics">Classics</option>
+  <option value="comedies">Comedies</option>
+  <option value="crime">Crime</option>
+  <option value="cult">Cult</option>
+  <option value="documentaries">Documentaries</option>
+  <option value="dramas">Dramas</option>
+  <option value="european films">European Films</option>
+  <<option value="fantasy">Fantasy</option>
+  <option value="hollywood">Hollywood</option>
+  <option value="horror">Horror</option>
+  <option value="independent">Independent</option>
+  <option value="international">International</option>
+  <option value="kids">Kids</option>
+  <option value="LGBTQ">LGBTQ</option>
+  <option value="musical">Musical</option>
+  <option value="romance">Romance</option>
+  <option value="scifi">SciFi</option>
+  <option value="shorts">Shorts</option>
+  <option value="sports">Sports</option>
+  <option value="standup comedies">Standup Comedies</option>
+  <option value="thriller">Thriller</option>
+  <option value="mysteries">Mysteries</option>
+  <option value="reality">Reality</option>
+  <option value="science nature">Science Nature</option>
+  <option value="chatshows">Chatshows</option>
+  <option value="teen">Teen</option>
+</select>
+<br>
+<br>
+<br>
+
+<!--
+    <label for="Action">Action</label>
+    <input id="Action" name="Genre" type="checkbox" value="Action">
+    <label for="Romance">Romance</label>
+    <input id="Romance" name="Genre" type="checkbox" value="Romance">
+    <label for="SciFi">Science Fiction</label>
+    <input id="SciFi" name="Genre" type="checkbox" value="Science Fiction">
+    </span>
+  -->  
+
+    <label for="IMDB">IMDB Rating:</label>
+          <input id="IMDB" name="imdb" type="range" min="1" max="10" step="0.1" 
+            value="1" oninput="this.nextElementSibling.value = this.value">
+      <output>1</output>
+<!--
+      <div class="dropdown">
+        <button>Genre</button>
+        <div class="dropdown-content multi-column">
+            <a href="#">Action</a>
+            <a href="#">Anime</a>
+            <a href="#">Black Stories</a>
+            <a href="#">British</a>
+            <a href="#">Classics</a>
+            <a href="#">Comedies</a>
+            <a href="#">Crime</a>
+            <a href="#">Cult</a>
+            <a href="#">Documentaries</a>
+            <a href="#">Dramas</a>
+            <a href="#">European Films</a>
+            <a href="#">Fantasy</a>
+            <a href="#">Hollywood</a>
+            <a href="#">Horror</a>
+            <a href="#">Independent</a>
+            <a href="#">International</a>
+            <a href="#">Kids & Family</a>
+            <a href="#">LGBTQ</a>
+            <a href="#">Music & Musicals</a>
+            <a href="#">Romance</a>
+            <a href="#">Science Fiction</a>
+            <a href="#">Shorts</a>
+            <a href="#">Sports</a>
+            <a href="#">Stand Up Comedies</a>
+            <a href="#">Thriller</a>
+            <a href="#">Mysteries</a>
+            <a href="#">Reality</a>
+            <a href="#">Science & Nature</a>
+            <a href="#">Chatshows</a>
+            <a href="#">Teen</a>
+        </div>
+    </div>
+
+  -->
+
+<br><br>
+    <button type="submit">Submit</button>
+  </form>
+
+  <p id="response"></p>
+  <br>
+  <br>
+
+
+
+  
+  <script>
+    
+    document.getElementById('dataForm').addEventListener
+('submit', async (event) => 
+ {
+      event.preventDefault(); 
+    
+ /*    
+      const formData = new FormData(event.target);
+          
+      const response = await 
+        fetch 
+ ('http://localhost:5000/submit', 
+  {
+        method: 'POST',
+        body: JSON.stringify(Object.fromEntries(formData)),
+        headers: {
+          'Content-Type': 'application/json'
+                 }
+  */
+                 })
+
+/*
+.then(response => response.text()) // Expect an HTML response
+.then(html => {
+    document.body.innerHTML = html; // Replace the entire page with the new HTML
+               });
+});
+
+*/
+const result = await response.text();
+      document.body.innerHTML = result
+    
+
+
+</script>
+
+</body>
+</html>
+
